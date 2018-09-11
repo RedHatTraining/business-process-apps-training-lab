@@ -1,0 +1,11 @@
+dm_template: https://raw.githubusercontent.com/gpe-mw-training/bxms_decision_mgmt_foundations_lab/master/resources/rhdm7-only.yaml
+
+ocp_project: "{{OCP_PROJECT_PREFIX}}-dm-ansible"
+
+build_status_retries: 30
+build_status_delay: 15
+deploy_status_retries: 30
+deploy_status_delay: 15
+
+kie_admin_pwd: test1234!
+maven_repo_pwd: test1234!
