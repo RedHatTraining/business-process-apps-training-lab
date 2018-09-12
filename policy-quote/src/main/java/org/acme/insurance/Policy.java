@@ -10,7 +10,7 @@ public class Policy implements Serializable {
 	private Date requestDate;
 	private String policyType;
 	private Integer vehicleYear;
-	private Integer price = 0;
+	private Integer price;
 	private Integer priceDiscount = 0;
 	private String driver;
 
