@@ -1,4 +1,4 @@
-package com.myteam.policy_quote;
+package org.acme.insurance;
 
 import java.io.Serializable;
 
