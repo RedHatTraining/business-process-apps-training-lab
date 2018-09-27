@@ -1,0 +1,6 @@
+docker tag registry.access.redhat.com/rhdm-7/rhdm70-decisioncentral-openshift:1.0 registry.lab.example.com/rhdm-7/rhdm70-decisioncentral-openshift:1.0
+docker tag registry.access.redhat.com/rhdm-7/rhdm70-decisioncentral-openshift:1.1 registry.lab.example.com/rhdm-7/rhdm70-decisioncentral-openshift:1.1
+docker tag registry.access.redhat.com/rhdm-7/rhdm70-kieserver-openshift:1.0 registry.lab.example.com/rhdm-7/rhdm70-kieserver-openshift:1.0
+docker tag registry.access.redhat.com/rhdm-7/rhdm70-kieserver-openshift:1.1 registry.lab.example.com/rhdm-7/rhdm70-kieserver-openshift:1.1
+docker tag node:latest registry.lab.example.com/node:latest
+

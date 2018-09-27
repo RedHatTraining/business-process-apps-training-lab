@@ -1,0 +1,4 @@
+        name: registry.access.redhat.com/rhdm-7/rhdm70-decisioncentral-openshift:1.0
+        name: registry.access.redhat.com/rhdm-7/rhdm70-decisioncentral-openshift:1.1
+        name: registry.access.redhat.com/rhdm-7/rhdm70-kieserver-openshift:1.0
+        name: registry.access.redhat.com/rhdm-7/rhdm70-kieserver-openshift:1.1
