@@ -20,13 +20,13 @@ docker pull registry.access.redhat.com/rhdm-7/rhdm70-decisioncentral-openshift:1
 docker pull registry.access.redhat.com/rhdm-7/rhdm70-decisioncentral-openshift:1.1
 docker pull registry.access.redhat.com/rhdm-7/rhdm70-kieserver-openshift:1.0
 docker pull registry.access.redhat.com/rhdm-7/rhdm70-kieserver-openshift:1.1
-docker pull node:latest
+docker pull registry.access.redhat.com/rhscl/nodejs-8-rhel7:latest
 
 docker tag registry.access.redhat.com/rhdm-7/rhdm70-decisioncentral-openshift:1.0 registry.lab.example.com/rhdm-7/rhdm70-decisioncentral-openshift:1.0
 docker tag registry.access.redhat.com/rhdm-7/rhdm70-decisioncentral-openshift:1.1 registry.lab.example.com/rhdm-7/rhdm70-decisioncentral-openshift:1.1
 docker tag registry.access.redhat.com/rhdm-7/rhdm70-kieserver-openshift:1.0 registry.lab.example.com/rhdm-7/rhdm70-kieserver-openshift:1.0
 docker tag registry.access.redhat.com/rhdm-7/rhdm70-kieserver-openshift:1.1 registry.lab.example.com/rhdm-7/rhdm70-kieserver-openshift:1.1
-docker tag node:latest registry.lab.example.com/node:latest
+docker tag registry.access.redhat.com/rhscl/nodejs-8-rhel7:latest registry.lab.example.com/node:latest
 docker tag registry.access.redhat.com/rhpam-7/rhpam70-businesscentral-openshift:1.0 registry.lab.example.com/rhpam-7/rhpam70-businesscentral-openshift:1.0 
 docker tag registry.access.redhat.com/rhpam-7/rhpam70-businesscentral-openshift:1.1 registry.lab.example.com/rhpam-7/rhpam70-businesscentral-openshift:1.1 
 docker tag registry.access.redhat.com/rhpam-7/rhpam70-businesscentral-openshift:1.2  registry.lab.example.com/rhpam-7/rhpam70-businesscentral-openshift:1.2
