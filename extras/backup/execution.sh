@@ -1,10 +1,8 @@
-1. ssh root@services to create the NFS shares
-
-mkdir -p /var/exports/vol01
-mkdir -p /var/exports/vol02
-mkdir -p /var/exports/vol03
-chown nfsnobody:nfsnobody /var/exports/vol*
-chmod a+rwx /var/exports/vol*
+ssh root@services mkdir -p /var/exports/vol01
+ssh root@services mkdir -p /var/exports/vol02
+ssh root@services mkdir -p /var/exports/vol03
+ssh root@services chown nfsnobody:nfsnobody /var/exports/vol*
+ssh root@services chmod a+rwx /var/exports/vol*
 
 2. Export the NFS shares
 
@@ -18,15 +16,15 @@ exportfs -a
 
 3. ssh root@master to create the PVs
 
-oc create -f vol01-pv.yaml
-oc create -f vol02-pv.yaml
-oc create -f vol03-pv.yaml
+ssh root@master oc create -f vol01-pv.yaml
+ssh root@master oc create -f vol02-pv.yaml
+ssh root@master oc create -f vol03-pv.yaml
 
-oc new-project bxms-pam-dc39
-oc label namespace bxms-pam-dc39 AAD='dc39'
-oc project default
-mkdir /tmp/dc39
-    oc process -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.0.2.GA/templates/rhpam70-authoring.yaml \
+ssh root@master oc new-project bxms-pam-dc39
+ssh root@master oc label namespace bxms-pam-dc39 AAD='dc39'
+ssh root@master oc project default
+ssh root@master mkdir /tmp/dc39
+ssh root@master oc process -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.0.2.GA/templates/rhpam70-authoring.yaml \
           -p IMAGE_STREAM_NAMESPACE=bxms-pam-dc39 \
           -p KIE_ADMIN_PWD=test1234! \
           -p APPLICATION_NAME=rht \

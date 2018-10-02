@@ -636,7 +636,7 @@ objects:
         from:
 # dtorresf: Using the available ImageStreamTag from the openshift registry
           kind: ImageStreamTag
-          name: 'nodejs:6'
+          name: 'node:latest'
           namespace: openshift
       type: Source
     triggers:

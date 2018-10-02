@@ -8,6 +8,7 @@ mkdir /tmp/dc39
 
 oc create -f /tmp/dc39/dm-image-streams.yaml -n bxms-dm-dc39
 oc create -f rhdm7-full-ng.yaml -n bxms-dm-dc39
+oc import-image node:latest --from=registry.lab.example.com/node:latest --confirm -n openshift
 oc new-app --name=dm-demo -n bxms-dm-dc39 --template=rhdm7-full-ng \
       -p RHT_IMAGE_STREAM_NAMESPACE=bxms-dm-dc39 \
       -p KIE_ADMIN_PWD=test1234! \
