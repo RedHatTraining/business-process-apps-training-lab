@@ -21,7 +21,7 @@ exportfs -a
 ssh root@master oc create -f vol01-pv.yaml
 ssh root@master oc create -f vol02-pv.yaml
 ssh root@master oc create -f vol03-pv.yaml
-ssh root@master oc create -f vol03-pv.yaml
+ssh root@master oc create -f vol04-pv.yaml
 
 # Create PAM without database
 
