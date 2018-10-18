@@ -83,14 +83,11 @@ ssh root@master mkdir /tmp/dc39
 
 
 oc create -f https://raw.githubusercontent.com/jboss-container-images/rhpam-7-openshift-image/7.0.2.GA/example-app-secret-template.yaml -n bxms-pamdb-dc39
-oc create -f /tmp/dc39/rhpam70-image-streams.yaml -n bxms-pamdb-dc39
+oc create -f /tmp/dc39/rhpam70-image-streams.yaml -n openshift
 oc new-app --template=example-app-secret \
       -p SECRET_NAME=businesscentral-app-secret \
       -n bxms-pamdb-dc39
-oc create -f /tmp/dc39/rhpam70-authoring.json -n bxms-pamdb-dc39
-oc rollout resume dc/rht-rhpamcentr -n bxms-pamdb-dc39
-oc create configmap products-cm --from-file=/tmp/dc39/products.txt -n bxms-pamdb-dc39
-
+oc create -f /tmp/dc39/rhpam-kieserver-postgresql.json -n bxms-pamdb-dc39
 oc volume dc/rht-kieserver -n bxms-pam-dc39 \
         --overwrite --add -t configmap -m /data --name=products-volume --configmap-name=products-cm
 
