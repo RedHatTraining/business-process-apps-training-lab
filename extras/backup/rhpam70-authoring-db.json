@@ -1,0 +1,1162 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "ServiceAccount",
+            "metadata": {
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-kieserver"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "RoleBinding",
+            "metadata": {
+                "labels": {
+                    "rhpam": "1.2",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-kieserver-view"
+            },
+            "roleRef": {
+                "name": "view"
+            },
+            "subjects": [
+                {
+                    "kind": "ServiceAccount",
+                    "name": "rht-kieserver"
+                }
+            ]
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "description": "All the Business Central web server's ports."
+                },
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-rhpamcentr",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-rhpamcentr"
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "http",
+                        "port": 8080,
+                        "targetPort": 8080
+                    },
+                    {
+                        "name": "https",
+                        "port": 8443,
+                        "targetPort": 8443
+                    },
+                    {
+                        "name": "git-ssh",
+                        "port": 8001,
+                        "targetPort": 8001
+                    }
+                ],
+                "selector": {
+                    "deploymentConfig": "rht-rhpamcentr"
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "description": "All the KIE server web server's ports."
+                },
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-kieserver",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-kieserver"
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "http",
+                        "port": 8080,
+                        "targetPort": 8080
+                    },
+                    {
+                        "name": "https",
+                        "port": 8443,
+                        "targetPort": 8443
+                    }
+                ],
+                "selector": {
+                    "deploymentConfig": "rht-kieserver"
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "description": "The database server's port."
+                },
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-postgresql",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-postgresql"
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "port": 5432,
+                        "targetPort": 5432
+                    }
+                ],
+                "selector": {
+                    "deploymentConfig": "rht-postgresql"
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "id": "rht-rhpamcentr-http",
+            "kind": "Route",
+            "metadata": {
+                "annotations": {
+                    "description": "Route for Business Central's http service.",
+                    "haproxy.router.openshift.io/timeout": "60s"
+                },
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-rhpamcentr",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-rhpamcentr"
+            },
+            "spec": {
+                "host": "",
+                "port": {
+                    "targetPort": "http"
+                },
+                "to": {
+                    "name": "rht-rhpamcentr"
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "id": "rht-rhpamcentr-https",
+            "kind": "Route",
+            "metadata": {
+                "annotations": {
+                    "description": "Route for Business Central's https service.",
+                    "haproxy.router.openshift.io/timeout": "60s"
+                },
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-rhpamcentr",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "secure-rht-rhpamcentr"
+            },
+            "spec": {
+                "host": "",
+                "port": {
+                    "targetPort": "https"
+                },
+                "tls": {
+                    "termination": "passthrough"
+                },
+                "to": {
+                    "name": "rht-rhpamcentr"
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "id": "rht-kieserver-http",
+            "kind": "Route",
+            "metadata": {
+                "annotations": {
+                    "description": "Route for KIE server's http service."
+                },
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-kieserver",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-kieserver"
+            },
+            "spec": {
+                "host": "",
+                "port": {
+                    "targetPort": "http"
+                },
+                "to": {
+                    "name": "rht-kieserver"
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "id": "rht-kieserver-https",
+            "kind": "Route",
+            "metadata": {
+                "annotations": {
+                    "description": "Route for KIE server's https service."
+                },
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-kieserver",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "secure-rht-kieserver"
+            },
+            "spec": {
+                "host": "",
+                "port": {
+                    "targetPort": "https"
+                },
+                "tls": {
+                    "termination": "passthrough"
+                },
+                "to": {
+                    "name": "rht-kieserver"
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "DeploymentConfig",
+            "metadata": {
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-rhpamcentr",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-rhpamcentr"
+            },
+            "spec": {
+                "replicas": 1,
+		"paused": true,
+                "selector": {
+                    "deploymentConfig": "rht-rhpamcentr"
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "application": "rht",
+                            "deploymentConfig": "rht-rhpamcentr",
+                            "service": "rht-rhpamcentr"
+                        },
+                        "name": "rht-rhpamcentr"
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "KIE_ADMIN_USER",
+                                        "value": "adminUser"
+                                    },
+                                    {
+                                        "name": "KIE_ADMIN_PWD",
+                                        "value": "test1234!"
+                                    },
+                                    {
+                                        "name": "KIE_MBEANS",
+                                        "value": "enabled"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_CONTROLLER_USER",
+                                        "value": "controllerUser"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_CONTROLLER_PWD",
+                                        "value": "pSTgHA8!"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_USER",
+                                        "value": "executionUser"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_PWD",
+                                        "value": "uHPEvH7!"
+                                    },
+                                    {
+                                        "name": "MAVEN_REPO_URL",
+                                        "value": "http://services.lab.example.com:8081/nexus/content/groups/training-java"
+                                    },
+                                    {
+                                        "name": "MAVEN_REPO_USERNAME",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "MAVEN_REPO_PASSWORD",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "KIE_MAVEN_USER",
+                                        "value": "mavenUser"
+                                    },
+                                    {
+                                        "name": "KIE_MAVEN_PWD",
+                                        "value": "cXpKjd4!"
+                                    },
+                                    {
+                                        "name": "HTTPS_KEYSTORE_DIR",
+                                        "value": "/etc/businesscentral-secret-volume"
+                                    },
+                                    {
+                                        "name": "HTTPS_KEYSTORE",
+                                        "value": "keystore.jks"
+                                    },
+                                    {
+                                        "name": "HTTPS_NAME",
+                                        "value": "jboss"
+                                    },
+                                    {
+                                        "name": "HTTPS_PASSWORD",
+                                        "value": "mykeystorepass"
+                                    },
+                                    {
+                                        "name": "PROBE_IMPL",
+                                        "value": "probe.eap.jolokia.EapProbe"
+                                    },
+                                    {
+                                        "name": "PROBE_DISABLE_BOOT_ERRORS_CHECK",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "SSO_URL",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_OPENIDCONNECT_DEPLOYMENTS",
+                                        "value": "ROOT.war"
+                                    },
+                                    {
+                                        "name": "SSO_REALM",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_SECRET",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_CLIENT",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_USERNAME",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_PASSWORD",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_DISABLE_SSL_CERTIFICATE_VALIDATION",
+                                        "value": "false"
+                                    },
+                                    {
+                                        "name": "HOSTNAME_HTTP",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "HOSTNAME_HTTPS",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_URL",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_BIND_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_BIND_CREDENTIAL",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_JAAS_SECURITY_DOMAIN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_BASE_CTX_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_BASE_FILTER",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_SEARCH_SCOPE",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_SEARCH_TIME_LIMIT",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_DISTINGUISHED_NAME_ATTRIBUTE",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_PARSE_USERNAME",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_USERNAME_BEGIN_STRING",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_USERNAME_END_STRING",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_ATTRIBUTE_ID",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLES_CTX_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_FILTER",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_RECURSION",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_DEFAULT_ROLE",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_NAME_ATTRIBUTE_ID",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_PARSE_ROLE_NAME_FROM_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_ATTRIBUTE_IS_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_REFERRAL_USER_ATTRIBUTE_ID_TO_CHECK",
+                                        "value": ""
+                                    }
+                                ],
+                                "image": "rhpam70-businesscentral-openshift",
+                                "imagePullPolicy": "Always",
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "curl --fail --silent -u 'adminUser:test1234!' http://localhost:8080/kie-wb.jsp"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 180,
+                                    "periodSeconds": 15,
+                                    "timeoutSeconds": 2
+                                },
+                                "name": "rht-rhpamcentr",
+                                "ports": [
+                                    {
+                                        "containerPort": 8778,
+                                        "name": "jolokia",
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "containerPort": 8080,
+                                        "name": "http",
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "containerPort": 8443,
+                                        "name": "https",
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "containerPort": 8001,
+                                        "name": "git-ssh",
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "curl --fail --silent -u 'adminUser:test1234!' http://localhost:8080/kie-wb.jsp"
+                                        ]
+                                    },
+                                    "failureThreshold": 6,
+                                    "initialDelaySeconds": 60,
+                                    "periodSeconds": 30,
+                                    "timeoutSeconds": 2
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "2Gi"
+                                    }
+                                },
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/etc/businesscentral-secret-volume",
+                                        "name": "businesscentral-keystore-volume",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/opt/eap/standalone/data/bpmsuite",
+                                        "name": "rht-rhpamcentr-pvol"
+                                    }
+                                ]
+                            }
+                        ],
+                        "terminationGracePeriodSeconds": 60,
+                        "volumes": [
+                            {
+                                "name": "businesscentral-keystore-volume",
+                                "secret": {
+                                    "secretName": "businesscentral-app-secret"
+                                }
+                            },
+                            {
+                                "name": "rht-rhpamcentr-pvol",
+                                "persistentVolumeClaim": {
+                                    "claimName": "rht-rhpamcentr-claim"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "triggers": [
+                    {
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "rht-rhpamcentr"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "rhpam70-businesscentral-openshift:1.2",
+                                "namespace": "openshift"
+                            }
+                        },
+                        "type": "ImageChange"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "DeploymentConfig",
+            "metadata": {
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-kieserver",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-kieserver"
+            },
+            "spec": {
+                "replicas": 1,
+		"paused": true,
+                "selector": {
+                    "deploymentConfig": "rht-kieserver"
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "application": "rht",
+                            "deploymentConfig": "rht-kieserver",
+                            "service": "rht-kieserver"
+                        },
+                        "name": "rht-kieserver"
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "DATASOURCES",
+                                        "value": "RHPAM"
+                                    },
+                                    {
+                                        "name": "RHPAM_DATABASE",
+                                        "value": "rhpam7"
+                                    },
+                                    {
+                                        "name": "RHPAM_JNDI",
+                                        "value": "java:/jboss/datasources/rhpam"
+                                    },
+                                    {
+                                        "name": "RHPAM_JTA",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "RHPAM_DATABASE",
+                                        "value": "rhpam7"
+                                    },
+                                    {
+                                        "name": "RHPAM_DRIVER",
+                                        "value": "postgresql"
+                                    },
+                                    {
+                                        "name": "RHPAM_USERNAME",
+                                        "value": "rhpam"
+                                    },
+                                    {
+                                        "name": "RHPAM_PASSWORD",
+                                        "value": "WtkbrM6!"
+                                    },
+                                    {
+                                        "name": "RHPAM_SERVICE_HOST",
+                                        "value": "rht-postgresql"
+                                    },
+                                    {
+                                        "name": "RHPAM_SERVICE_PORT",
+                                        "value": "5432"
+                                    },
+                                    {
+                                        "name": "TIMER_SERVICE_DATA_STORE",
+                                        "value": "rht-postgresql"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_PERSISTENCE_DIALECT",
+                                        "value": "org.hibernate.dialect.PostgreSQLDialect"
+                                    },
+                                    {
+                                        "name": "DROOLS_SERVER_FILTER_CLASSES",
+                                        "value": "true"
+                                    },
+                                    {
+                                        "name": "KIE_ADMIN_USER",
+                                        "value": "adminUser"
+                                    },
+                                    {
+                                        "name": "KIE_ADMIN_PWD",
+                                        "value": "test1234!"
+                                    },
+                                    {
+                                        "name": "KIE_MBEANS",
+                                        "value": "enabled"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_BYPASS_AUTH_USER",
+                                        "value": "false"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_CONTROLLER_USER",
+                                        "value": "controllerUser"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_CONTROLLER_PWD",
+                                        "value": "pSTgHA8!"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_CONTROLLER_SERVICE",
+                                        "value": "rht-rhpamcentr"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_CONTROLLER_PROTOCOL",
+                                        "value": "ws"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_ID",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_HOST",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "EXECUTION_SERVER_ROUTE_NAME",
+                                        "value": "rht-kieserver"
+                                    },
+                                    {
+                                        "name": "EXECUTION_SERVER_USE_SECURE_ROUTE_NAME",
+                                        "value": "false"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_PERSISTENCE_DS",
+                                        "value": "java:/jboss/datasources/rhpam"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_USER",
+                                        "value": "executionUser"
+                                    },
+                                    {
+                                        "name": "KIE_SERVER_PWD",
+                                        "value": "uHPEvH7!"
+                                    },
+                                    {
+                                        "name": "MAVEN_REPOS",
+                                        "value": "RHPAMCENTR,EXTERNAL"
+                                    },
+                                    {
+                                        "name": "RHPAMCENTR_MAVEN_REPO_SERVICE",
+                                        "value": "rht-rhpamcentr"
+                                    },
+                                    {
+                                        "name": "RHPAMCENTR_MAVEN_REPO_PATH",
+                                        "value": "/maven2/"
+                                    },
+                                    {
+                                        "name": "RHPAMCENTR_MAVEN_REPO_USERNAME",
+                                        "value": "mavenUser"
+                                    },
+                                    {
+                                        "name": "RHPAMCENTR_MAVEN_REPO_PASSWORD",
+                                        "value": "cXpKjd4!"
+                                    },
+                                    {
+                                        "name": "EXTERNAL_MAVEN_REPO_URL",
+                                        "value": "http://services.lab.example.com:8081/nexus/content/groups/training-java"
+                                    },
+                                    {
+                                        "name": "EXTERNAL_MAVEN_REPO_USERNAME",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "EXTERNAL_MAVEN_REPO_PASSWORD",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "HTTPS_KEYSTORE_DIR",
+                                        "value": "/etc/kieserver-secret-volume"
+                                    },
+                                    {
+                                        "name": "HTTPS_KEYSTORE",
+                                        "value": "keystore.jks"
+                                    },
+                                    {
+                                        "name": "HTTPS_NAME",
+                                        "value": "jboss"
+                                    },
+                                    {
+                                        "name": "HTTPS_PASSWORD",
+                                        "value": "mykeystorepass"
+                                    },
+                                    {
+                                        "name": "SSO_URL",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_OPENIDCONNECT_DEPLOYMENTS",
+                                        "value": "ROOT.war"
+                                    },
+                                    {
+                                        "name": "SSO_REALM",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_SECRET",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_CLIENT",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_USERNAME",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_PASSWORD",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "SSO_DISABLE_SSL_CERTIFICATE_VALIDATION",
+                                        "value": "false"
+                                    },
+                                    {
+                                        "name": "HOSTNAME_HTTP",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "HOSTNAME_HTTPS",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_URL",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_BIND_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_BIND_CREDENTIAL",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_JAAS_SECURITY_DOMAIN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_BASE_CTX_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_BASE_FILTER",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_SEARCH_SCOPE",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_SEARCH_TIME_LIMIT",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_DISTINGUISHED_NAME_ATTRIBUTE",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_PARSE_USERNAME",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_USERNAME_BEGIN_STRING",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_USERNAME_END_STRING",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_ATTRIBUTE_ID",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLES_CTX_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_FILTER",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_RECURSION",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_DEFAULT_ROLE",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_NAME_ATTRIBUTE_ID",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_PARSE_ROLE_NAME_FROM_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_ROLE_ATTRIBUTE_IS_DN",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "AUTH_LDAP_REFERRAL_USER_ATTRIBUTE_ID_TO_CHECK",
+                                        "value": ""
+                                    }
+                                ],
+                                "image": "rhpam70-kieserver-openshift",
+                                "imagePullPolicy": "Always",
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "curl --fail --silent -u 'adminUser:test1234!' http://localhost:8080/services/rest/server/healthcheck"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "initialDelaySeconds": 180,
+                                    "periodSeconds": 15,
+                                    "timeoutSeconds": 2
+                                },
+                                "name": "rht-kieserver",
+                                "ports": [
+                                    {
+                                        "containerPort": 8778,
+                                        "name": "jolokia",
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "containerPort": 8080,
+                                        "name": "http",
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "containerPort": 8443,
+                                        "name": "https",
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "curl --fail --silent -u 'adminUser:test1234!' http://localhost:8080/services/rest/server/readycheck"
+                                        ]
+                                    },
+                                    "failureThreshold": 6,
+                                    "initialDelaySeconds": 60,
+                                    "periodSeconds": 30,
+                                    "timeoutSeconds": 2
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "memory": "1Gi"
+                                    }
+                                },
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/etc/kieserver-secret-volume",
+                                        "name": "kieserver-keystore-volume",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "serviceAccountName": "rht-kieserver",
+                        "terminationGracePeriodSeconds": 60,
+                        "volumes": [
+                            {
+                                "name": "kieserver-keystore-volume",
+                                "secret": {
+                                    "secretName": "businesscentral-app-secret"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "triggers": [
+                    {
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "rht-kieserver"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "rhpam70-kieserver-openshift:1.2",
+                                "namespace": "openshift"
+                            }
+                        },
+                        "type": "ImageChange"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "DeploymentConfig",
+            "metadata": {
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-postgresql",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-postgresql"
+            },
+            "spec": {
+                "replicas": 1,
+                "selector": {
+                    "deploymentConfig": "rht-postgresql"
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "application": "rht",
+                            "deploymentConfig": "rht-postgresql",
+                            "service": "rht-postgresql"
+                        },
+                        "name": "rht-postgresql"
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "POSTGRESQL_USER",
+                                        "value": "rhpam"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_PASSWORD",
+                                        "value": "WtkbrM6!"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_DATABASE",
+                                        "value": "rhpam7"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_MAX_PREPARED_TRANSACTIONS",
+                                        "value": "100"
+                                    }
+                                ],
+                                "image": "postgresql",
+                                "imagePullPolicy": "Always",
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/usr/libexec/check-container",
+                                            "--live"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 120,
+                                    "timeoutSeconds": 10
+                                },
+                                "name": "rht-postgresql",
+                                "ports": [
+                                    {
+                                        "containerPort": 5432,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/usr/libexec/check-container"
+                                        ]
+                                    },
+                                    "initialDelaySeconds": 5,
+                                    "timeoutSeconds": 1
+                                },
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/pgsql/data",
+                                        "name": "rht-postgresql-pvol"
+                                    }
+                                ]
+                            }
+                        ],
+                        "terminationGracePeriodSeconds": 60,
+                        "volumes": [
+                            {
+                                "name": "rht-postgresql-pvol",
+                                "persistentVolumeClaim": {
+                                    "claimName": "rht-postgresql-claim"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "triggers": [
+                    {
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "rht-postgresql"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "postgresql:9.5",
+                                "namespace": "openshift"
+                            }
+                        },
+                        "type": "ImageChange"
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-rhpamcentr",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-rhpamcentr-claim"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "labels": {
+                    "application": "rht",
+                    "rhpam": "1.2",
+                    "service": "rht-postgresql",
+                    "template": "rhpam70-authoring"
+                },
+                "name": "rht-postgresql-claim"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                }
+            }
+        }
+    ]
+}
