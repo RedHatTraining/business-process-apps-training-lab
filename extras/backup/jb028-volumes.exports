@@ -1,0 +1,6 @@
+/var/exports/vol01 *(rw,root_squash)
+/var/exports/vol02 *(rw,root_squash)
+/var/exports/vol03 *(rw,root_squash)
+/var/exports/vol04 *(rw,root_squash)
+/var/exports/vol05 *(rw,root_squash)
+/var/exports/vol06 *(rw,root_squash)
