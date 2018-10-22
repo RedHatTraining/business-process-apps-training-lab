@@ -544,7 +544,7 @@
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "name": "rhpam70-businesscentral-openshift:1.2",
-                                "namespace": "bxms-pam-dc39"
+                                "namespace": "openshift"
                             }
                         },
                         "type": "ImageChange"
@@ -962,7 +962,7 @@
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "name": "rhpam70-kieserver-openshift:1.2",
-                                "namespace": "bxms-pam-dc39"
+                                "namespace": "openshift"
                             }
                         },
                         "type": "ImageChange"
