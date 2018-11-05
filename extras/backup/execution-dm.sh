@@ -15,7 +15,7 @@ ssh root@master oc new-app --name=dm-demo -n bxms-dm-dc39 --template=rhdm7-full-
       -p RHT_IMAGE_STREAM_NAMESPACE=openshift \
       -p KIE_ADMIN_PWD=test1234! \
       -p MAVEN_REPO_PASSWORD=test1234! \
-      -p CLUSTER=master.lab.example.com \
+      -p CLUSTER=lab.example.com \
       -p PROJECT=bxms-dm-dc39 \
       -p APPLICATION_NAME=gpte > /tmp/dc39/gpte-dm-demo.txt
 
