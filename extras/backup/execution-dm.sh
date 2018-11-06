@@ -1,3 +1,4 @@
+ssh root@classroom rht-config-nat
 ssh root@master oc new-project bxms-dm-dc39
 
 ssh root@master oc label namespace bxms-dm-dc39 AAD='dc39'

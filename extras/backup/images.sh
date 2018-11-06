@@ -76,3 +76,8 @@ ssh root@services docker push registry.lab.example.com/node:latest
 
 rsync -aPv docker root@services:/etc/sysconfig/docker
 ssh root@services systemctl restart docker
+
+ssh root@services docker rmi -f $(docker images -q)
+ssh root@services systemctl stop docker
+ssh root@services rm -rf /var/lib/docker/*
+ssh root@services systemctl start docker

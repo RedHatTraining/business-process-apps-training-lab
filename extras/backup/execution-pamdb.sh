@@ -1,5 +1,5 @@
 # Create PAM with Postgresql
-
+ssh root@classroom rht-config-nat
 ssh root@master oc new-project bxms-pamdb-dc39
 ssh root@master oc label namespace bxms-pamdb-dc39 AAD='dc39'
 ssh root@master oc project default

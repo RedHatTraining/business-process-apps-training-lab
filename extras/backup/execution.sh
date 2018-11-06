@@ -1,5 +1,5 @@
 # Create PAM without database
-
+ssh root@classroom rht-config-nat
 ssh root@master oc new-project bxms-pam-dc39
 ssh root@master oc label namespace bxms-pam-dc39 AAD='dc39'
 ssh root@master oc project default
