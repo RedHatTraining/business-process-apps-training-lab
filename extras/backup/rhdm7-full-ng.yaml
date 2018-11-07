@@ -614,7 +614,6 @@ objects:
     runPolicy: Serial
     source:
       git:
-        ref: security-fix
 # dtorresf: new git repository with templated angular2 application
         uri: 'http://services.lab.example.com/gpte-ng-dmf/'
       type: Git
