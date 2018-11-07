@@ -628,7 +628,7 @@ objects:
               fieldRef:
                 fieldPath: metadata.namespace
           - name: NPM_MIRROR
-            value: 'http:services.lab.example.com:8081/nexus/content/groups/nodejs'
+            value: 'http://services.lab.example.com:8081/nexus/content/groups/nodejs'
           - name: REST_API_URL
             value: 'http://${APPLICATION_NAME}-kieserver-$(OCP_NAMESPACE).${CLUSTER}/'
           - name: REST_API_USER
