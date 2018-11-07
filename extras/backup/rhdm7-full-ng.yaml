@@ -373,7 +373,7 @@ objects:
       git:
         ref: master
         type: Git
-        uri: http://services.lab.example.com/bxms_decision_mgmt_foundations_lab.git
+        uri: http://services.lab.example.com/bxms_decision_mgmt_foundations_lab
     strategy:
       sourceStrategy:
         from:
@@ -616,7 +616,7 @@ objects:
       git:
         ref: security-fix
 # dtorresf: new git repository with templated angular2 application
-        uri: 'http://services.lab.example.com/gpte-ng-dmf.git'
+        uri: 'http://services.lab.example.com/gpte-ng-dmf'
       type: Git
     strategy:
       sourceStrategy:
