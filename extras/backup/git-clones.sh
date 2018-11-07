@@ -37,19 +37,6 @@ ssh root@services 'cd dm7-customer-greeting && git commit -m "Establish remote r
 ssh root@services 'cd dm7-customer-greeting && git push -u http://localhost/dm7-customer-greeting master'
 ssh root@services rm -rf dm7-customer-greeting
 
-ssh root@services git clone https://github.com/RedHatTraining/business-process-apps-training.git
-ssh root@services mkdir /var/www/git/business-process-apps-training
-ssh root@services 'cd /var/www/git/business-process-apps-training/ && git init --bare'
-ssh root@services 'cd /var/www/git/business-process-apps-training/ && git update-server-info'
-ssh root@services 'cd /var/www/git/business-process-apps-training/ && chown -R apache:apache .'
-ssh root@services 'cd /var/www/git/business-process-apps-training/ && chcon -R -t git_rw_content_t .'
-ssh root@services 'cd business-process-apps-training && rm -rf .git'
-ssh root@services 'cd business-process-apps-training && git init'
-ssh root@services 'cd business-process-apps-training && git add .'
-ssh root@services 'cd business-process-apps-training && git commit -m "Establish remote repository"'
-ssh root@services 'cd business-process-apps-training && git push -u http://localhost/business-process-apps-training master'
-ssh root@services rm -rf business-process-apps-training
-
 ssh root@services git clone https://github.com/RedHatTraining/business-process-apps-training-lab.git
 ssh root@services mkdir /var/www/git/business-process-apps-training-lab
 ssh root@services 'cd /var/www/git/business-process-apps-training-lab/ && git init --bare'
