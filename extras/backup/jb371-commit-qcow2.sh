@@ -27,7 +27,7 @@ for i in node1 node2 master ; do
 done
 
 echo "Generating 100GB VDA from services"
-qemu-img commit $course-services-vda.ovl
+qemu-img commit do999-services-vda.ovl
 srcqc=do999-services-vda.qcow2
 dstqc=$course-services-vda-100G-$RHELVER-$DATE.qcow2
 virt-sparsify --compress ${srcqc} ${tgtdir}/${dstqc}
