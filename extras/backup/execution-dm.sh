@@ -18,7 +18,7 @@ ssh root@master oc new-app --name=dm-demo -n bxms-dm-dc39 --template=rhdm7-full-
       -p MAVEN_REPO_PASSWORD=test1234! \
       -p CLUSTER=apps.lab.example.com \
       -p PROJECT=bxms-dm-dc39 \
-      -p APPLICATION_NAME=gpte > /tmp/dc39/gpte-dm-demo.txt
+      -p APPLICATION_NAME=gpte
 
 ssh root@master oc rollout resume dc/gpte-rhdmcentr -n bxms-dm-dc39
 ssh root@master oc rollout resume dc/gpte-kieserver -n bxms-dm-dc39
