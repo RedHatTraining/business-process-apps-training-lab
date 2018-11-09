@@ -1,4 +1,6 @@
 ssh root@services git clone https://github.com/gpe-mw-training/gpte-ng-dmf.git
+ssh root@services "sed -i -e 's|git+https://github.com/gpe-mw-training/gpte-ng-dmf.git|http://services.lab.example.com/gpte-ng-dmf|' /root/gpte-ng-dmf/package.json"
+ssh root@services "sed -i -e 's|npm install express && npm install http && npm install path && node server.js|npm config set registry \"http://services.lab.example.com:8081/nexus/content/groups/nodejs\" && npm install express && npm install http && npm install path && node server.js|' /root/gpte-ng-dmf/package.json"
 ssh root@services mkdir /var/www/git/gpte-ng-dmf
 ssh root@services 'cd /var/www/git/gpte-ng-dmf/ && git init --bare'
 ssh root@services 'cd /var/www/git/gpte-ng-dmf/ && git update-server-info'
