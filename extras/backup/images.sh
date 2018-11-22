@@ -1,4 +1,5 @@
 rsync -aPv docker-clean root@services:/etc/sysconfig/docker
+ssh root@classroom rht-config-nat
 ssh root@services systemctl restart docker
 
 ssh root@services "docker pull registry.access.redhat.com/rhpam-7/rhpam70-businesscentral-openshift:1.0 && docker tag registry.access.redhat.com/rhpam-7/rhpam70-businesscentral-openshift:1.0 registry.lab.example.com/rhpam-7/rhpam70-businesscentral-openshift:1.0 && docker push registry.lab.example.com/rhpam-7/rhpam70-businesscentral-openshift:1.0" 
