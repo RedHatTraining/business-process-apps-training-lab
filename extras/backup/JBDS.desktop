@@ -1,0 +1,25 @@
+[Desktop Entry]
+Categories=Applications;Development;
+Comment=Runs the Red Hat JBoss Developer Studio 12.0.0.GA
+Comment[en]=Runs the Red Hat JBoss Developer Studio 12.0.0.GA
+Encoding=UTF-8
+Exec=/home/student/jbds/studio/devstudio 
+GenericName=
+GenericName[en]=
+Icon=/home/student/jbds/studio/48-devstudio.icon.png
+MimeType=
+Name=Red Hat JBoss Developer Studio 12.0.0.GA
+Name[en]=Red Hat JBoss Developer Studio 12.0.0.GA
+Path=/home/student/jbds/studio
+ServiceTypes=
+SwallowExec=
+SwallowTitle=
+Terminal=false
+TerminalOptions=
+Type=Application
+URL=
+X-KDE-SubstituteUID=false
+X-KDE-Username=root
+
+# created by com.izforge.izpack.util.os.Unix_Shortcut $Revision$
+# $Id$
