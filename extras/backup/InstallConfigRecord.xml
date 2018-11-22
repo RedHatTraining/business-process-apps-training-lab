@@ -10,8 +10,8 @@
 <installgroup>devstudio</installgroup>
 </com.jboss.devstudio.core.installer.JBossAsSelectPanel>
 <com.jboss.devstudio.core.installer.InstallAdditionalFeaturesPanel id="features">
-<ius>com.jboss.devstudio.core.package,org.testng.eclipse.feature.group</ius>
-<locations>devstudio</locations>
+<ius>com.jboss.devstudio.core.package,org.testng.eclipse.feature.group,com.jboss.devstudio.integration-stack.bpr.feature.feature.group</ius>
+<locations>devstudio,devstudio-is</locations>
 </com.jboss.devstudio.core.installer.InstallAdditionalFeaturesPanel>
 <com.jboss.devstudio.core.installer.InstallAdditionalRuntimesPanel id="runtimes">
 <locations/>
@@ -25,9 +25,9 @@
 </com.jboss.devstudio.core.installer.CreateLinkPanel>
 <com.izforge.izpack.panels.ShortcutPanel id="shortcut">
 <programGroup name=""/>
-<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="" createForAll="true" description="Runs the Red Hat Developer Studio 12.0.0.GA" encoding="UTF-8" group="false" icon="/usr/local/devstudio/studio/48-devstudio.icon.png" iconIndex="0" initialState="1" mimetype="" name="Red Hat Developer Studio 12.9.0.GA" target="/usr/local/devstudio/studio/devstudio" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/usr/local/devstudio/studio"/>
-<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="" createForAll="true" description="Runs the Red Hat Developer Studio 12.0.0.GA" encoding="UTF-8" group="true" icon="/usr/local/devstudio/studio/48-devstudio.icon.png" iconIndex="0" initialState="1" mimetype="" name="Red Hat Developer Studio 12.9.0.GA" target="/usr/local/devstudio/studio/devstudio" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/usr/local/devstudio/studio"/>
-<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="-jar &quot;/usr/local/devstudio/Uninstaller/uninstaller.jar&quot;" createForAll="true" description="Uninstall Red Hat Developer Studio 12.9.0.GA" encoding="UTF-8" group="true" icon="/usr/local/devstudio/studio/48-uninstall.icon.png" iconIndex="0" initialState="1" mimetype="" name="Uninstall Red Hat Developer Studio 12.0.0.GA" target="java" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/usr/local/devstudio/Uninstaller"/>
+<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="" createForAll="true" description="Runs the Red Hat Developer Studio 12.0.0.GA" encoding="UTF-8" group="false" icon="/home/student/jbds/studio/48-devstudio.icon.png" iconIndex="0" initialState="1" mimetype="" name="Red Hat Developer Studio 12.0.0.GA" target="/home/student/jbds/studio/devstudio" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/home/student/jbds/studio"/>
+<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="" createForAll="true" description="Runs the Red Hat Developer Studio 12.0.0.GA" encoding="UTF-8" group="true" icon="/home/student/jbds/studio/48-devstudio.icon.png" iconIndex="0" initialState="1" mimetype="" name="Red Hat Developer Studio 12.0.0.GA" target="/home/student/jbds/studio/devstudio" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/home/student/jbds/studio"/>
+<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="-jar &quot;/home/student/jbds/Uninstaller/uninstaller.jar&quot;" createForAll="true" description="Uninstall Red Hat Developer Studio 12.0.0.GA" encoding="UTF-8" group="true" icon="/home/student/jbds/studio/48-uninstall.icon.png" iconIndex="0" initialState="1" mimetype="" name="Uninstall Red Hat Developer Studio 12.0.0.GA" target="java" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/home/student/jbds/Uninstaller"/>
 </com.izforge.izpack.panels.ShortcutPanel>
 <com.jboss.devstudio.core.installer.ShortcutPanelPatch id="shortcutpatch"/>
 <com.izforge.izpack.panels.SimpleFinishPanel id="finish"/>

@@ -1,4 +1,5 @@
 ssh root@workstation yum install -y libreoffice-calc
+ssh root@workstation yum clean all -y
 rsync -aPv /home/kiosk/Downloads/devstudio-*.jar student@workstation:/home/student
 rsync -aPv InstallConfigRecord.xml student@workstation:/home/student
 ssh student@workstation java -jar /home/student/devstudio-*.jar /home/student/InstallConfigRecord.xml
