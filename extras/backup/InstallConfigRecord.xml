@@ -3,7 +3,7 @@
 <com.jboss.devstudio.core.installer.HTMLInfoPanelWithRootWarning id="introduction"/>
 <com.izforge.izpack.panels.HTMLLicencePanel id="licence"/>
 <com.jboss.devstudio.core.installer.PathInputPanel id="target">
-<installpath>/usr/local/devstudio</installpath>
+<installpath>/home/student/jbds</installpath>
 </com.jboss.devstudio.core.installer.PathInputPanel>
 <com.jboss.devstudio.core.installer.JREPathPanel id="jre"/>
 <com.jboss.devstudio.core.installer.JBossAsSelectPanel id="as">
@@ -25,9 +25,9 @@
 </com.jboss.devstudio.core.installer.CreateLinkPanel>
 <com.izforge.izpack.panels.ShortcutPanel id="shortcut">
 <programGroup name=""/>
-<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="" createForAll="true" description="Runs the Red Hat Developer Studio 12.9.0.GA" encoding="UTF-8" group="false" icon="/usr/local/devstudio/studio/48-devstudio.icon.png" iconIndex="0" initialState="1" mimetype="" name="Red Hat Developer Studio 12.9.0.GA" target="/usr/local/devstudio/studio/devstudio" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/usr/local/devstudio/studio"/>
-<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="" createForAll="true" description="Runs the Red Hat Developer Studio 12.9.0.GA" encoding="UTF-8" group="true" icon="/usr/local/devstudio/studio/48-devstudio.icon.png" iconIndex="0" initialState="1" mimetype="" name="Red Hat Developer Studio 12.9.0.GA" target="/usr/local/devstudio/studio/devstudio" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/usr/local/devstudio/studio"/>
-<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="-jar &quot;/usr/local/devstudio/Uninstaller/uninstaller.jar&quot;" createForAll="true" description="Uninstall Red Hat Developer Studio 12.9.0.GA" encoding="UTF-8" group="true" icon="/usr/local/devstudio/studio/48-uninstall.icon.png" iconIndex="0" initialState="1" mimetype="" name="Uninstall Red Hat Developer Studio 12.9.0.GA" target="java" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/usr/local/devstudio/Uninstaller"/>
+<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="" createForAll="true" description="Runs the Red Hat Developer Studio 12.0.0.GA" encoding="UTF-8" group="false" icon="/usr/local/devstudio/studio/48-devstudio.icon.png" iconIndex="0" initialState="1" mimetype="" name="Red Hat Developer Studio 12.9.0.GA" target="/usr/local/devstudio/studio/devstudio" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/usr/local/devstudio/studio"/>
+<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="" createForAll="true" description="Runs the Red Hat Developer Studio 12.0.0.GA" encoding="UTF-8" group="true" icon="/usr/local/devstudio/studio/48-devstudio.icon.png" iconIndex="0" initialState="1" mimetype="" name="Red Hat Developer Studio 12.9.0.GA" target="/usr/local/devstudio/studio/devstudio" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/usr/local/devstudio/studio"/>
+<shortcut KdeSubstUID="false" categories="Applications;Development;" commandLine="-jar &quot;/usr/local/devstudio/Uninstaller/uninstaller.jar&quot;" createForAll="true" description="Uninstall Red Hat Developer Studio 12.9.0.GA" encoding="UTF-8" group="true" icon="/usr/local/devstudio/studio/48-uninstall.icon.png" iconIndex="0" initialState="1" mimetype="" name="Uninstall Red Hat Developer Studio 12.0.0.GA" target="java" terminal="false" terminalOptions="" tryexec="" type="Application" url="" usertype="0" workingDirectory="/usr/local/devstudio/Uninstaller"/>
 </com.izforge.izpack.panels.ShortcutPanel>
 <com.jboss.devstudio.core.installer.ShortcutPanelPatch id="shortcutpatch"/>
 <com.izforge.izpack.panels.SimpleFinishPanel id="finish"/>
