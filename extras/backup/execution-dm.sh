@@ -23,6 +23,8 @@ ssh root@master oc new-app --name=dm-demo -n bxms-dm-dc39 --template=rhdm7-full-
 ssh root@master oc rollout resume dc/gpte-rhdmcentr -n bxms-dm-dc39
 ssh root@master oc rollout resume dc/gpte-kieserver -n bxms-dm-dc39
 
+ssh root@classroom rht-config-nat --reverse
+
 ssh root@master oc rollout resume dc/gpte-ng-dmf -n bxms-dm-dc39
 
 
