@@ -9,4 +9,5 @@ ssh root@services chown -R nexus:nexus /opt/nexus*
 ssh root@services chown -R nexus:nexus /opt/sonatype-work
 nexus_dir=$(ssh root@services "ls /opt | grep nexus-2.14")
 ssh root@services ln -s /opt/${nexus_dir} /opt/nexus
+ssh root@services tar xzvf /tmp/dc39/sonatype-work.tar.gz -C /opt
 ssh root@services systemctl start nexus
