@@ -9,3 +9,4 @@ ssh root@workstation chown -R student:student /home/student/Desktop/*
 ssh root@workstation rm -rf /home/student/devstudio-*.jar
 ssh root@workstation rm -rf /home/student/InstallConfigRecord.xml
 rsync -aPv training.repo root@workstation:/etc/yum.repos.d/
+rsync -aPv settings.xml student@workstation:/home/student/.m2/
