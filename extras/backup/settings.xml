@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<settings>
+
+<mirrors>
+    <mirror>
+      <id>training-java</id>
+      <name>UK Central</name>
+      <url>http://services.lab.example.com:8081/nexus/content/groups/training-java</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>
+        <profiles>
+
+                <!-- Configure the Nexus Maven repository -->
+                <profile>
+                        <id>redhat-training-java</id>
+                        <repositories>
+                                <repository>
+                                        <id>Red Hat Training Java</id>
+					<url>http://services.lab.example.com:8081/nexus/content/groups/training-java/</url>
+                                        <releases>
+                                                <enabled>true</enabled>
+                                        </releases>
+                                        <snapshots>
+                                                <enabled>false</enabled>
+                                        </snapshots>
+                                </repository>
+                        </repositories>
+                        <pluginRepositories>
+                                <pluginRepository>
+                                        <id>Red Hat Training Java</id>
+					<url>http://services.lab.example.com:8081/nexus/content/groups/training-java/</url>
+                                        <releases>
+                                                <enabled>true</enabled>
+                                        </releases>
+                                        <snapshots>
+                                                <enabled>false</enabled>
+                                        </snapshots>
+                                </pluginRepository>
+                        </pluginRepositories>
+                </profile>
+
+        </profiles>
+        <activeProfiles>
+                <activeProfile>redhat-training-java</activeProfile>
+        </activeProfiles>
+</settings>
